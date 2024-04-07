@@ -17,3 +17,16 @@ resource webapp 'Microsoft.Web/sites@2023-01-01' = {
     serverFarmId: webappplan.id
   }
 }
+
+resource slot1 'Microsoft.Web/sites/slots@2023-01-01' = {
+  parent: webapp
+  name: 'feature1'
+  location: location
+  properties: {
+    serverFarmId: webappplan.id
+    cloningInfo: {
+      sourceWebAppId: webapp.id
+    }
+}
+
+}
