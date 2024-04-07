@@ -1,4 +1,5 @@
 param location string = 'east us'
+param webappname string 
 
 
 resource webappplan 'Microsoft.Web/serverfarms@2023-01-01' = {
@@ -10,7 +11,7 @@ resource webappplan 'Microsoft.Web/serverfarms@2023-01-01' = {
 }
 
 resource webapp 'Microsoft.Web/sites@2023-01-01' = {
-  name: 'ntmswebapp543'
+  name: '${webappname}${uniqueString(resourceGroup().id)}'
   location:location
   properties: {
     serverFarmId: webappplan.id
